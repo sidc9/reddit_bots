@@ -30,10 +30,8 @@ token = data['access_token']
 # f.write(str(token))
 # f.close()
 
-#token = "32561059-VnKy99JqihIIUWdQ5P9bgZBZXLs"
-
 print "Success!\n\nHiding 25 posts from Front Page..."
-exit(1)
+
 auth = "bearer " + token
 
 # Get frontpage
