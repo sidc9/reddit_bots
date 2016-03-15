@@ -7,7 +7,7 @@ try:
 	with open('reddit_bot.json') as data_file:
 		config = json.load(data_file)
 except:
-	print "Couldn't load credentials file"
+	print ("Couldn't load credentials file")
 	exit(1)
 
 
@@ -16,7 +16,7 @@ APP_SECRET =config['APP_SECRET']
 USERNAME = config['USERNAME']
 PASSWORD = config['PASSWORD']
 
-print "\nAuthenticating...\n"
+print ("\nAuthenticating...\n")
 
 client_auth = requests.auth.HTTPBasicAuth(str(APP_KEY), str(APP_SECRET))
 post_data = {"grant_type": "password", "username": str(USERNAME), "password": str(PASSWORD)}
@@ -30,7 +30,7 @@ token = data['access_token']
 # f.write(str(token))
 # f.close()
 
-print "Success!\n\nHiding 25 posts from Front Page..."
+print ("Success!\n\nHiding 25 posts from Front Page...")
 
 auth = "bearer " + token
 
@@ -51,11 +51,11 @@ for i in range(0,25):
 	fullname = data['data']['children'][i]['data']['name']
 
 	try:
-		print "#",i, "  " + post + "\n\tfrom r/" + sub + "\n"
+		print ("#",i, "  " + post + "\n\tfrom r/" + sub + "\n")
 
 	except:
 		# To catch unrecognized character encodings
-		print "#",i, "  !! couldn't print macha !! \n"
+		print ("#",i, "  !! couldn't print macha !! \n")
 
 	vote_headers = {"Authorization": auth, "User-Agent": "python:upvote.frontpage.0.1 by sidc9"}	
 	name_list = name_list + fullname
@@ -72,6 +72,6 @@ if hide_response.status_code != 200:
 
 
 if failed_list:
-	print "Failed :( : " + failed_list
+	print ("Failed :( : " + failed_list)
 else:
-	print "Done! :) "
+	print ("Done! :) ")
